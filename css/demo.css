@@ -1,0 +1,68 @@
+#grid {
+  margin-top: 1em;
+}
+
+#grid .row {
+  border-right: 20px solid #222;
+  border-left: 20px solid #222;
+}
+
+#grid .row:first-child {
+  border-top: 20px solid #222;
+}
+
+#grid .row:last-child {
+  border-bottom: 20px solid #222;
+}
+
+#grid .row .col-xs-1 {
+  border: 1px solid black;
+  height: 50px;
+  background-color: #eee;
+}
+
+#grid .row .col-xs-1.visited {
+  background-color: #ccc;
+  background-image: url('../images/feet.png');
+  background-size: 70% 70%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  opacity: 0.3;
+
+}
+
+#grid .row .col-xs-1.blocked {
+  background-color: #222;
+}
+
+#grid .row .col-xs-1.current {
+  background-image: url('../images/ed.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  opacity: 1.0 !important;
+}
+
+#grid .row .col-xs-1.goal {
+  background-image: url('../images/goal.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+#steps {
+  margin: 0;
+  padding: 0;
+}
+
+#steps li.btn {
+  margin: 0;
+  display: block;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  text-align: left;
+  display: block;
+}

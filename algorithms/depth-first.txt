@@ -1,0 +1,11 @@
+if (right:new)
+moveRight
+if (down:new)
+moveDown
+if (left:new)
+moveUp
+if (up:new)
+moveUp
+moveBack
+if (position:start)
+giveUp

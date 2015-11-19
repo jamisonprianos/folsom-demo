@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Folsom Elementary | Great American Teach In 2016</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./css/demo.css" />
+    <script src="./maps/simple.js"></script>
+    <script src="./maps/difficult.js"></script>
+    <script src="./maps/impossible.js"></script>
+    <script src="./maps/downright.js"></script>
+    <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="./js/tether.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/demo.js"></script>
+  </head>
+  <body>
+    <div class="modal fade" id="messageModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              <span class="sr-only">Close</span>
+            </button>
+            <h4 class="modal-title">Algorithm Result</h4>
+          </div>
+          <div class="modal-body">
+            <p id="message">One fine body&hellip;</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-3 text-center">
+          <div class="row" style="display: none;">
+            <div class="col-xs-12 text-center"><span id="coordinates">(0, 0)</span> -&gt; <span id="next_coords">(0, 0)</span></div>
+          </div>
+          <div class="row">
+            <div class="col-xs-11">
+              <br />
+              <label>Level</label>
+              <div class="btn-group row" style="display:block">
+                <button type="button" class="btn btn-primary col-xs-3 btn-map" title="Simple" data-map="simple"><i class="fa fa-thumbs-o-up"></i></button>
+                <button type="button" class="btn col-xs-3 btn-map" title="Down and Right" data-map="downright"><i class="fa fa-clone"></i></button>
+                <button type="button" class="btn col-xs-3 btn-map" title="Difficult" data-map="difficult"><i class="fa fa-exclamation-circle"></i></button>
+                <button type="button" class="btn col-xs-3 btn-map" title="Impossible" data-map="impossible"><i class="fa fa-exclamation-triangle"></i></button>
+              </div>
+              <br />
+              <label>Mode</label>
+              <div class="btn-group row" style="display: block">
+                <button type="button" class="btn btn-primary col-xs-6 btn-control-manual" title="Manual"><i class="fa fa-user"></i></button>
+                <button type="button" class="btn col-xs-6 btn-control-auto" title="Automatic"><i class="fa fa-list"></i></button>
+              </div>
+              <br />
+              <div class="row manual-controls">
+                <label>Controls</label>
+                <div class="col-xs-12">
+                  <div class="row">
+                    <button type="button" class="btn col-xs-2 col-xs-offset-7 btn-move-up">
+                      <i class="fa fa-chevron-up"></i>
+                    </button>
+                  </div>
+                  <div class="row">
+                    <button type="button" class="btn btn-info col-xs-2 col-xs-offset-1 btn-reset-map" title="Reset"><i class="fa fa-refresh"></i></button>
+                    <button type="button" class="btn col-xs-2 col-xs-offset-2 btn-move-left">
+                      <i class="fa fa-chevron-left"></i>
+                    </button>
+                    <button type="button" class="btn col-xs-2 col-xs-offset-2 btn-move-right">
+                      <i class="fa fa-chevron-right"></i>
+                    </button>
+                  </div>
+                  <div class="row">
+                    <button type="button" class="btn col-xs-2 col-xs-offset-7 btn-move-down">
+                      <i class="fa fa-chevron-down"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="automatic-controls" style="display: none">
+                <label>Speed</label>
+                <div class="btn-group row" style="display: block">
+                  <button type="button" class="btn col-xs-3 btn-speed" title="Slow" data-speed="250"><i class="fa fa-chevron-right"></i></button>
+                  <button type="button" class="btn btn-primary col-xs-3 btn-speed" title="Normal" data-speed="100"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></button>
+                  <button type="button" class="btn col-xs-3 btn-speed" data-speed="20" title="Fast"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></button>
+                  <button type="button" class="btn col-xs-3 btn-speed" data-speed="1" title="Max"><i class="fa fa-rocket"></i></button>
+                </div>
+                <br />
+                <label>Algorithm</label>
+                <div class="btn-group row" style="display: block">
+                  <button type="button" class="btn btn-primary col-xs-4 btn-algo" data-algo="simple" title="Simple"><i class="fa fa-list-ol"></i></button>
+                  <button type="button" class="btn col-xs-4 btn-algo" data-algo="lost" title="Aimless"><i class="fa fa-question-circle"></i></button>
+                  <button type="button" class="btn col-xs-4 btn-algo" data-algo="depthFirst" title="Depth-First"><i class="fa fa-map-o"></i></button>
+                </div>
+                <br />
+                <label>Controls</label>
+                <div class="btn-group row" style="display: block">
+                  <button type="button" class="btn btn-info col-xs-3 btn-reset-map" title="Reset"><i class="fa fa-refresh"></i></button>
+                  <button type="button" class="btn btn-success col-xs-3 btn-play" title="Play"><i class="fa fa-play"></i></button>
+                  <button type="button" class="btn btn-danger col-xs-3 btn-stop" title="Stop"><i class="fa fa-stop"></i></button>
+                  <button type="button" class="btn btn-warning col-xs-3 btn-step" title="Next Step"><i class="fa fa-step-forward"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-7">
+          <div id="grid"></div>
+        </div>
+        <div class="col-xs-2">
+          <br />
+          <div class="automatic-controls" style="display: none">
+            <label>Steps</label>
+            <ul id="steps">
+            </ul>
+          </div>
+          <div class="manual-controls">
+            <img src="./images/logo.png" style="width: 100%"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
